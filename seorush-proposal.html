@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Rush - AI Visibility Implementation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%); color: #fff; min-height: 100vh; padding: 40px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(138, 79, 255, 0.3); }
+    .brand { font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #a78bfa, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .date { color: #a78bfa; font-size: 14px; }
+    h1 { font-size: 32px; font-weight: 700; background: linear-gradient(90deg, #a78bfa, #c084fc, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+    h2 { font-size: 20px; font-weight: 600; color: #c084fc; margin: 35px 0 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(192, 132, 252, 0.3); }
+    h3 { font-size: 17px; font-weight: 600; color: #e879f9; margin: 25px 0 15px; }
+    p { color: #d1d5db; line-height: 1.7; margin-bottom: 15px; font-size: 14px; }
+    .hero { background: linear-gradient(135deg, rgba(138, 79, 255, 0.15), rgba(192, 132, 252, 0.1)); border-radius: 16px; padding: 35px; margin-bottom: 40px; border: 1px solid rgba(138, 79, 255, 0.3); }
+    .hero-title { font-size: 18px; color: #fff; margin-bottom: 10px; }
+    .hero-subtitle { color: #a78bfa; font-size: 14px; }
+    .client-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 25px; }
+    .info-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center; }
+    .info-card .number { font-size: 28px; font-weight: 700; color: #c084fc; }
+    .info-card .label { font-size: 12px; color: #9ca3af; margin-top: 5px; }
+    .recording-box { background: linear-gradient(90deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2)); border-radius: 12px; padding: 20px; margin: 30px 0; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(168, 85, 247, 0.4); }
+    .recording-box svg { width: 40px; height: 40px; color: #e879f9; flex-shrink: 0; }
+    .recording-box a { color: #e879f9; text-decoration: none; font-weight: 500; }
+    .recording-box a:hover { text-decoration: underline; }
+    .section { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(138, 79, 255, 0.15); }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 13px; }
+    .comparison-table th { background: linear-gradient(90deg, #7c3aed, #a855f7); padding: 14px; text-align: left; font-weight: 600; }
+    .comparison-table th:first-child { border-radius: 10px 0 0 0; }
+    .comparison-table th:last-child { border-radius: 0 10px 0 0; }
+    .comparison-table td { padding: 14px; border-bottom: 1px solid rgba(138, 79, 255, 0.2); }
+    .comparison-table tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+    .comparison-table tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+    .comparison-table tr:nth-child(even) { background: rgba(138, 79, 255, 0.05); }
+    .highlight { color: #22c55e; font-weight: 600; }
+    .savings-box { background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.1)); border-radius: 16px; padding: 30px; margin: 30px 0; border: 2px solid rgba(34, 197, 94, 0.4); text-align: center; }
+    .savings-amount { font-size: 48px; font-weight: 700; color: #22c55e; }
+    .savings-label { color: #86efac; font-size: 16px; margin-top: 5px; }
+    .savings-detail { color: #d1d5db; font-size: 14px; margin-top: 15px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin: 30px 0; }
+    .price-card { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 25px; border: 1px solid rgba(138, 79, 255, 0.3); }
+    .price-card.recommended { border: 2px solid #22c55e; position: relative; }
+    .price-card.recommended::before { content: 'RECOMMENDED'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #22c55e; color: #000; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+    .price-card h4 { font-size: 14px; color: #9ca3af; margin-bottom: 10px; }
+    .price-card .price { font-size: 36px; font-weight: 700; color: #fff; }
+    .price-card .price span { font-size: 16px; color: #9ca3af; }
+    .price-card .details { font-size: 13px; color: #a78bfa; margin-top: 10px; }
+    .calc-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(138, 79, 255, 0.2); font-size: 13px; }
+    .calc-row:last-child { border-bottom: none; }
+    .calc-label { color: #d1d5db; }
+    .calc-value { color: #fff; font-weight: 600; }
+    .feature-list { list-style: none; margin: 20px 0; }
+    .feature-list li { padding: 12px 0; padding-left: 30px; position: relative; color: #d1d5db; border-bottom: 1px solid rgba(138, 79, 255, 0.1); font-size: 14px; }
+    .feature-list li::before { content: '✓'; position: absolute; left: 0; color: #a855f7; font-weight: bold; }
+    .strategy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
+    .strategy-card { background: rgba(138, 79, 255, 0.1); border-radius: 12px; padding: 20px; border-left: 4px solid #a855f7; }
+    .strategy-card h4 { color: #e879f9; font-size: 15px; margin-bottom: 10px; }
+    .strategy-card p { margin-bottom: 0; font-size: 13px; }
+    .insight-box { background: rgba(251, 191, 36, 0.1); border-radius: 12px; padding: 20px; margin: 20px 0; border-left: 4px solid #fbbf24; }
+    .insight-box h4 { color: #fbbf24; font-size: 14px; margin-bottom: 8px; }
+    .insight-box p { margin-bottom: 0; font-size: 13px; }
+    .tech-step { display: flex; gap: 15px; margin: 15px 0; align-items: flex-start; }
+    .tech-step .num { background: linear-gradient(135deg, #7c3aed, #a855f7); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .tech-step .content { flex: 1; }
+    .tech-step .content strong { color: #c084fc; }
+    .cta-section { background: linear-gradient(135deg, #7c3aed, #a855f7); border-radius: 16px; padding: 40px; text-align: center; margin-top: 40px; }
+    .cta-section h3 { color: #fff; margin-bottom: 15px; }
+    .cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 0; }
+    .footer { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(138, 79, 255, 0.3); color: #6b7280; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">Semrush Enterprise</div>
+      <div class="date">Meeting Summary | December 14, 2026</div>
+    </header>
+
+    <div class="hero">
+      <h1>AI Visibility Implementation</h1>
+      <p class="hero-title">Strategic Partnership Proposal for SEO Rush</p>
+      <p class="hero-subtitle">Expanding SEO services with AI Overviews monitoring & optimization</p>
+      <div class="client-info">
+        <div class="info-card">
+          <div class="number">70-80</div>
+          <div class="label">Active Clients</div>
+        </div>
+        <div class="info-card">
+          <div class="number">HE / EN</div>
+          <div class="label">Languages</div>
+        </div>
+        <div class="info-card">
+          <div class="number">Israel</div>
+          <div class="label">Primary Market</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recording-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+      </svg>
+      <div>
+        <strong>Watch Meeting Recording</strong><br>
+        <a href="https://www.semrush.com/meeting-recording" target="_blank">Semrush Meeting Recording →</a>
+      </div>
+    </div>
+
+    <h2>🎯 Strategic Objectives</h2>
+    <div class="section">
+      <p>The primary goal is to expand current SEO service offerings by integrating measurement and optimization for AI Agents and AI Overviews (AIO). This initiative focuses on <strong>client retention</strong> and delivering enhanced results, rather than establishing immediate price increases.</p>
+      
+      <h3>Key Requirements Identified</h3>
+      <ul class="feature-list">
+        <li>Monitoring brand presence in Google AI Overviews (Hebrew & English)</li>
+        <li>Analyzing "Share of Model" across AI platforms</li>
+        <li>Access to ranking data and competitor positioning</li>
+        <li>Identification of missing prompts and opportunities</li>
+        <li>Data integration capabilities (API / Looker Studio)</li>
+      </ul>
+    </div>
+
+    <h2>📊 Industry Benchmarks: Agency Strategies</h2>
+    <div class="section">
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <h4>🚀 "Foot-in-the-Door" Strategy</h4>
+          <p>Use Brand Performance Report as a lead generation tool. Conduct preliminary analysis on prospects (law firms, educational institutions) to highlight gaps in AI visibility. Reports can be sold as standalone products (~$400 USD) or used to justify higher retainer tiers.</p>
+        </div>
+        <div class="strategy-card">
+          <h4>🔒 "Retention" Model</h4>
+          <p>Integrate AI visibility into existing packages to demonstrate future-proofing. Workflow: Identify "missing" prompts → Create/Optimize content → Monitor improvements over 1–3 months.</p>
+        </div>
+      </div>
+      
+      <div class="insight-box">
+        <h4>💡 Volume & Capacity Best Practice</h4>
+        <p>Standard agency practice involves tracking <strong>10–20 high-priority prompts per client per month</strong>. Tracking excessive volumes (hundreds of prompts) often leads to data dilution and unmanageable content production workloads.</p>
+      </div>
+    </div>
+
+    <h2>⚙️ How AI Data Collection Works</h2>
+    <div class="section">
+      <div class="tech-step">
+        <div class="num">1</div>
+        <div class="content"><strong>Infrastructure:</strong> A network of bots operating across various IP addresses and geographic locations processes keywords associated with specific brands or industries.</div>
+      </div>
+      <div class="tech-step">
+        <div class="num">2</div>
+        <div class="content"><strong>Querying:</strong> Bots query multiple AI platforms (Google Gemini, ChatGPT) to retrieve responses.</div>
+      </div>
+      <div class="tech-step">
+        <div class="num">3</div>
+        <div class="content"><strong>Data Aggregation:</strong> System captures AI response text, cited sources, and follow-up questions. Similar prompts are clustered to provide consolidated search volume view.</div>
+      </div>
+      <div class="tech-step">
+        <div class="num">4</div>
+        <div class="content"><strong>Sentiment Analysis:</strong> NLP determines sentiment of brand mentions (Positive, Negative, Neutral) within AI responses.</div>
+      </div>
+    </div>
+
+    <h2>💰 Cost Comparison: Why Enterprise Makes Sense</h2>
+    <div class="section">
+      <h3>Scenario: Managing 50 Client Projects</h3>
+      
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h4>AI Toolkit (Standard)</h4>
+          <div class="price">$5,000<span>/month</span></div>
+          <div class="details">$100 × 50 domains</div>
+          <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(138,79,255,0.3);">
+            <div class="calc-row"><span class="calc-label">Per domain cost</span><span class="calc-value">$100</span></div>
+            <div class="calc-row"><span class="calc-label">Total domains</span><span class="calc-value">50</span></div>
+            <div class="calc-row"><span class="calc-label">Monthly total</span><span class="calc-value">$5,000</span></div>
+          </div>
+        </div>
+        
+        <div class="price-card recommended">
+          <h4>AIO Enterprise Bronze</h4>
+          <div class="price" style="color: #22c55e;">$2,500<span>/month</span></div>
+          <div class="details">Platform fee + 50 projects included*</div>
+          <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(34,197,94,0.3);">
+            <div class="calc-row"><span class="calc-label">Base platform</span><span class="calc-value">$2,500</span></div>
+            <div class="calc-row"><span class="calc-label">Included projects</span><span class="calc-value">5</span></div>
+            <div class="calc-row"><span class="calc-label">Bonus projects</span><span class="calc-value highlight">+45 FREE</span></div>
+            <div class="calc-row"><span class="calc-label">Monthly total</span><span class="calc-value highlight">$2,500</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="savings-box">
+        <div class="savings-amount">$2,500/month</div>
+        <div class="savings-label">Your Monthly Savings</div>
+        <div class="savings-detail">That's <strong>$30,000 annually</strong> — a 50% reduction in costs while gaining enterprise-level features</div>
+      </div>
+    </div>
+
+    <h2>🔍 Feature Comparison: Toolkit vs Enterprise</h2>
+    <div class="section">
+      <table class="comparison-table">
+        <tr>
+          <th>Feature</th>
+          <th>AI Toolkit</th>
+          <th>Enterprise Platform</th>
+        </tr>
+        <tr>
+          <td>Pricing Model</td>
+          <td>Per Project ($100)</td>
+          <td class="highlight">Platform Fee + Low Project Fee</td>
+        </tr>
+        <tr>
+          <td>Competitor Tracking</td>
+          <td>AI-Discovered Only</td>
+          <td class="highlight">Manual Entry Supported</td>
+        </tr>
+        <tr>
+          <td>Prompt Control</td>
+          <td>Discovery Mode</td>
+          <td class="highlight">Manual Input Supported</td>
+        </tr>
+        <tr>
+          <td>Content Workflow</td>
+          <td>Basic Optimization</td>
+          <td class="highlight">Deep Content Audit & Briefs</td>
+        </tr>
+        <tr>
+          <td>Source Targeting</td>
+          <td>Limited</td>
+          <td class="highlight">Identifies domains feeding AI</td>
+        </tr>
+        <tr>
+          <td>Data Integration</td>
+          <td>PDF Export Only</td>
+          <td class="highlight">API Access (Beta/Included)</td>
+        </tr>
+        <tr>
+          <td>Brand Performance Report</td>
+          <td>40+ page PDF audit</td>
+          <td class="highlight">40+ page PDF + API data</td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>✍️ Content Optimization Workflow</h2>
+    <div class="section">
+      <p>When a missing prompt is identified (e.g., client absent from "Best cyber security providers in Tel Aviv"):</p>
+      
+      <div class="tech-step">
+        <div class="num">1</div>
+        <div class="content"><strong>Brief Generation:</strong> Platform generates a content brief based on the target prompt.</div>
+      </div>
+      <div class="tech-step">
+        <div class="num">2</div>
+        <div class="content"><strong>Structural Analysis:</strong> Tool analyzes required structure, tone of voice, and key takeaways to maximize citation probability.</div>
+      </div>
+      <div class="tech-step">
+        <div class="num">3</div>
+        <div class="content"><strong>Real-time Scoring:</strong> Content score guides user to include recommended keywords, headers, and formatting.</div>
+      </div>
+      
+      <div class="insight-box">
+        <h4>🎯 Source Targeting Capability</h4>
+        <p>Enterprise platform identifies exactly which third-party domains are feeding data to the AI, enabling targeted PR/outreach strategies for maximum visibility impact.</p>
+      </div>
+    </div>
+
+    <h2>📈 AIO Pricing Tiers</h2>
+    <div class="section">
+      <table class="comparison-table">
+        <tr>
+          <th>Feature</th>
+          <th>Bronze $2,500</th>
+          <th>Silver $4,000</th>
+          <th>Gold $6,000</th>
+        </tr>
+        <tr>
+          <td>Included Users</td>
+          <td>1</td>
+          <td>5</td>
+          <td>25</td>
+        </tr>
+        <tr>
+          <td>Guest Users</td>
+          <td>Unlimited</td>
+          <td>Unlimited</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>Projects</td>
+          <td>5 <span class="highlight">(+45 bonus)*</span></td>
+          <td>25</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Prompts</td>
+          <td>500</td>
+          <td>1,500</td>
+          <td>5,000</td>
+        </tr>
+        <tr>
+          <td>API Credits</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>Service Credits</td>
+          <td>25</td>
+          <td>200</td>
+          <td>500</td>
+        </tr>
+        <tr>
+          <td>Onboarding Support</td>
+          <td class="highlight">✓</td>
+          <td class="highlight">✓</td>
+          <td class="highlight">✓</td>
+        </tr>
+        <tr>
+          <td>Dedicated CSM</td>
+          <td class="highlight">✓</td>
+          <td class="highlight">✓</td>
+          <td class="highlight">✓</td>
+        </tr>
+      </table>
+      
+      <h3>Add-on Packages</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Add-on</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>Additional Users</td>
+          <td>$100 per user</td>
+        </tr>
+        <tr>
+          <td>Additional Projects</td>
+          <td>$10 per project</td>
+        </tr>
+        <tr>
+          <td>Additional Prompts</td>
+          <td>$50 per 100 prompts</td>
+        </tr>
+        <tr>
+          <td>Extra Service Credits</td>
+          <td>$100 per 100 credits</td>
+        </tr>
+      </table>
+      <p style="font-size: 12px; color: #a78bfa; margin-top: 15px;">* Special offer: 45 additional projects included free of charge with Bronze plan. All plans billed annually.</p>
+    </div>
+
+    <h2>📋 Recommended Next Steps</h2>
+    <div class="section">
+      <ul class="feature-list">
+        <li>Start with Bronze plan ($2,500/mo) with 50 projects to cover existing client base</li>
+        <li>Pilot program: Select 5-10 high-value clients for initial AI visibility rollout</li>
+        <li>Track 10-20 prompts per client to maintain actionable data quality</li>
+        <li>Integrate API with Looker Studio for automated client reporting</li>
+        <li>Use Brand Performance Reports for prospect outreach and upselling</li>
+      </ul>
+    </div>
+
+    <div class="cta-section">
+      <h3>Ready to Scale Your AI Visibility Services?</h3>
+      <p>Let's schedule a follow-up call to finalize implementation details and get your team onboarded.</p>
+    </div>
+
+    <footer class="footer">
+      <p>Prepared by Semrush Enterprise | AI Visibility Solutions</p>
+      <p style="margin-top: 8px;">Questions? Contact your dedicated account manager</p>
+    </footer>
+  </div>
+</body>
+</html>
